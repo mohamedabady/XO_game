@@ -21,4 +21,5 @@ export const state: IState = {
   gameStatus: 'Progress',
   gameStatusText: '',
   winningCombination: [],
+  currentScreen: 'Welcome',
 };

@@ -5,11 +5,12 @@ export interface IState {
   gameStatus: GameStatus;
   gameStatusText: string;
   winningCombination: number[];
+  currentScreen: GameScreen;
 }
 
 export type CellValue = 'X' | 'O';
 export type GameStatus = 'Progress' | 'X-won' | 'O-won' | 'Draw';
-
+export type GameScreen = 'Welcome' | 'Game';
 export interface IPlayer {
   name: string;
   class: CellValue;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
+import Button from '../components/Button';
 import Cell from '../components/Cell';
 import {useOvermind} from '../overmind';
 
@@ -14,17 +15,25 @@ export default function Game() {
   );
   return (
     <View style={styles.pageContainer}>
-      <Text>{`Current Player : ${state.currentPlayerClass}`}</Text>
+      <Text style={styles.headerText}>{`Current Player : ${
+        state.players[state.currentPlayerClass].name
+      }   -   (${state.currentPlayerClass})`}</Text>
       <FlatList
+        style={styles.listStyle}
         data={Object.values(state.cells)}
         renderItem={renderItem}
         keyExtractor={item => item.index}
         numColumns={3}
       />
-      <Text style={{marginTop: 20, fontSize: 32}}>{state.gameStatusText}</Text>
-      <TouchableOpacity onPress={actions.resetGame}>
-        <Text>reset game</Text>
-      </TouchableOpacity>
+      <Text style={styles.gameStatusText}>{state.gameStatusText}</Text>
+      <Button
+        style={{marginBottom: 12}}
+        buttonText={
+          state.gameStatus === 'Progress' ? 'Reset Game' : 'Play Again'
+        }
+        onPress={actions.resetGame}
+      />
+      <Button buttonText="Quit Game" onPress={actions.quitGame} />
     </View>
   );
 }
@@ -34,5 +43,9 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 20,
     width: '100%',
+    alignItems: 'center',
   },
+  headerText: {fontSize: 20, marginBottom: 20},
+  listStyle: {width: '100%'},
+  gameStatusText: {marginVertical: 20, fontSize: 32},
 });

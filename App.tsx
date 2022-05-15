@@ -2,7 +2,7 @@ import React from 'react';
 import {config} from './src/overmind';
 import {Provider} from 'overmind-react';
 import {createOvermind} from 'overmind';
-import Game from './src/screens/Game';
+import Content from './src/Content';
 
 const overmind = createOvermind(config, {
   devtools: 'localhost:3031',
@@ -11,7 +11,7 @@ const overmind = createOvermind(config, {
 export default function App() {
   return (
     <Provider value={overmind}>
-      <Game />
+      <Content />
     </Provider>
   );
 }
